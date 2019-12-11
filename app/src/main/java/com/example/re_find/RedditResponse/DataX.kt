@@ -6,5 +6,6 @@ import com.google.gson.annotations.SerializedName
 data class DataX(
 
     val subreddit: String,
-    val title: String
+    val title: String,
+    val url : String
 )

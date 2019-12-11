@@ -1,10 +1,11 @@
-package com.example.re_find
+package com.example.re_find.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.re_find.Adapter.PostAdapter
+import com.example.re_find.R
+import com.example.re_find.RedditAPIService
 import com.example.re_find.RedditResponse.Children
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             callRedditAPI(subredditSearchEditText.text.toString())
         }
 
-        callRedditAPI(keyword)
+     //   callRedditAPI(keyword)
     }
 
     fun setupAdapter(posts : ArrayList<Children>) {
