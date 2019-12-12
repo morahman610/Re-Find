@@ -12,8 +12,8 @@ object RedditAPIRequest {
 
     private val BASE_URL = "https://reddit.com"
 
-    fun callRedditAPI(keyword: String) : Retrofit {
-        return  Retrofit.Builder()
+    fun callRedditAPI(keyword: String): Retrofit {
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

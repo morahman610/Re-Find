@@ -10,7 +10,8 @@ import com.example.re_find.R
 import com.example.re_find.Model.Children
 import com.squareup.picasso.Picasso
 
-class PostAdapter(val context : Context ,val posts : List<Children>) : RecyclerView.Adapter<PostViewHolder>() {
+class PostAdapter(val context: Context, val posts: List<Children>) :
+    RecyclerView.Adapter<PostViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -28,12 +29,12 @@ class PostAdapter(val context : Context ,val posts : List<Children>) : RecyclerV
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
 
-        val postData = posts[position].data
+        val postData = posts[position].postData
 
         holder.postName.text = postData.title
         holder.subCatName.text = postData.subreddit
 
-        if(postData.thumbnail.isNotEmpty()) {
+        if (postData.thumbnail.isNotEmpty()) {
             Picasso.get().load(postData.thumbnail).into(holder.postImage)
         }
 

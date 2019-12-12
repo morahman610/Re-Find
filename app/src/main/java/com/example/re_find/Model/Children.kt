@@ -1,7 +1,10 @@
 package com.example.re_find.Model
 
+import com.google.gson.annotations.SerializedName
+
 
 data class Children(
-    val `data`: DataX,
+    @SerializedName("data")
+    val postData: DataX,
     val kind: String
 )

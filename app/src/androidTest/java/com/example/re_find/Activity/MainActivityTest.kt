@@ -4,8 +4,7 @@ import android.os.SystemClock
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
@@ -21,8 +20,11 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
+    val testKeywords = arrayListOf("Basketball", "games", "music", "interesting facts", "sneakers", "traveling" )
+
     @Test
     fun launchAppTest() {
+
         ActivityScenario.launch(MainActivity::class.java)
     }
 
@@ -42,5 +44,26 @@ class MainActivityTest {
         onView(withId(R.id.urlTxt))
             .check(matches(ViewMatchers.isDisplayed()))
 
+    }
+
+    @Test
+    fun multipleInputsTest() {
+
+        ActivityScenario.launch(MainActivity::class.java)
+
+        for (keyword in testKeywords) {
+
+            onView(withId(R.id.subredditSearchEditText))
+                .perform(typeText(keyword))
+            onView(withId(R.id.submitBtn))
+                .perform(click())
+            onView(withId(R.id.subredditSearchEditText))
+                .perform(clearText())
+
+        }
+
+        Thread.sleep(2000)
+        onView(withId(R.id.postRecyclerView))
+            .check(matches(ViewMatchers.isDisplayed()))
     }
 }

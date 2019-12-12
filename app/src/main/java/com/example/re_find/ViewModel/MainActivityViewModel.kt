@@ -15,12 +15,13 @@ import retrofit2.create
 
 class MainActivityViewModel() : ViewModel() {
 
-    var postsList : MutableLiveData<ArrayList<Children>> = MutableLiveData()
+    var postsList: MutableLiveData<ArrayList<Children>> = MutableLiveData()
     val redditAPIRequest = RedditAPIRequest
-    val compositeDisposable : CompositeDisposable = CompositeDisposable()
+    val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    fun getPosts(keyword : String, context: Context): MutableLiveData<ArrayList<Children>> {
-        val apiRedditPosts = redditAPIRequest.callRedditAPI(keyword).create(RedditAPIService::class.java)
+    fun getPosts(keyword: String, context: Context): MutableLiveData<ArrayList<Children>> {
+        val apiRedditPosts =
+            redditAPIRequest.callRedditAPI(keyword).create(RedditAPIService::class.java)
 
         compositeDisposable.add(
             apiRedditPosts.getPosts(keyword)
