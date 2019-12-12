@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Re-Find</string>
     <string name="submit">submit</string>
+    <string name="postURL">PostURL</string>
 </resources>

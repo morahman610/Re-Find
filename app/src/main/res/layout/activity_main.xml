@@ -13,16 +13,11 @@
         android:layout_height="wrap_content" />
 
     <Button
-    android:id="@+id/submitBtn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/submit"/>
-
-    <TextView
-        android:id="@+id/textView"
+        android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="something bid"/>
+        android:text="@string/submit"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRecyclerView"

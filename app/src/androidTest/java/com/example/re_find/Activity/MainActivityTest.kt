@@ -35,8 +35,11 @@ class MainActivityTest {
             .perform(typeText("basketball"))
         onView(withId(R.id.submitBtn))
             .perform(click())
-        SystemClock.sleep(1000)
+        Thread.sleep(1000)
         onView(withId(R.id.postRecyclerView))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        Thread.sleep(2000)
+        onView(withId(R.id.urlTxt))
             .check(matches(ViewMatchers.isDisplayed()))
 
     }

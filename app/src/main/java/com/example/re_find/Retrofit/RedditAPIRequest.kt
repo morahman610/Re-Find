@@ -14,7 +14,7 @@ object RedditAPIRequest {
 
     fun callRedditAPI(keyword: String) : Retrofit {
         return  Retrofit.Builder()
-            .baseUrl("https://www.reddit.com")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

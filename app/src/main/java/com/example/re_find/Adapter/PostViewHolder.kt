@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.subreddit_item_view.view.*
 
 class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    val postName = itemView.postName
+    val postName = itemView.postTitle
     val subCatName = itemView.subCatName
     val postImage = itemView.postImg
 

@@ -23,19 +23,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private var keyword: String = "funny"
-    private var posts = ArrayList<Children>()
-    private lateinit var compositeDisposable: CompositeDisposable
+    private var keyword: String = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         postRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        compositeDisposable = CompositeDisposable()
-
-
 
         val viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
