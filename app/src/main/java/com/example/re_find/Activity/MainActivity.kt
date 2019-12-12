@@ -2,11 +2,17 @@ package com.example.re_find.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.re_find.Adapter.PostAdapter
 import com.example.re_find.R
-import com.example.re_find.RedditAPIService
-import com.example.re_find.RedditResponse.Children
+import com.example.re_find.Retrofit.RedditAPIService
+import com.example.re_find.Model.Children
+import com.example.re_find.Retrofit.RedditAPIRequest.callRedditAPI
+import com.example.re_find.ViewModel.MainActivityViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -17,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private var keyword : String = "basketball"
+    private var keyword: String = "funny"
     private var posts = ArrayList<Children>()
     private lateinit var compositeDisposable: CompositeDisposable
 
@@ -29,39 +35,25 @@ class MainActivity : AppCompatActivity() {
 
         compositeDisposable = CompositeDisposable()
 
-        submitBtn.setOnClickListener {
-            callRedditAPI(subredditSearchEditText.text.toString())
-        }
 
-     //   callRedditAPI(keyword)
+
+        val viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+
+        viewModel.getPosts(keyword, this).observe(this, Observer {
+            setupAdapter(it)
+        })
+
+        submitBtn.setOnClickListener {
+            keyword = subredditSearchEditText.text.toString()
+            viewModel.getPosts(keyword, this)
+        }
     }
 
-    fun setupAdapter(posts : ArrayList<Children>) {
+    fun setupAdapter(posts: ArrayList<Children>) {
         val adapter = PostAdapter(this, posts)
         postRecyclerView.adapter = adapter
 
     }
 
-    fun callRedditAPI(keyword : String) {
-        val retrofit : Retrofit = Retrofit.Builder()
-            .baseUrl("https://www.reddit.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
 
-        val apiRedditPosts = retrofit.create(RedditAPIService::class.java)
-
-        compositeDisposable.add(
-            apiRedditPosts.getPosts(keyword)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    posts = it.data.children as ArrayList<Children>
-                    setupAdapter(posts)
-                    textView.text = "success"
-                }, {
-                    textView.text = "Failure " + it.message
-                })
-        )
-    }
 }

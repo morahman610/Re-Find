@@ -1,6 +1,6 @@
-package com.example.re_find
+package com.example.re_find.Retrofit
 
-import com.example.re_find.RedditResponse.RedditResponse
+import com.example.re_find.Model.RedditResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

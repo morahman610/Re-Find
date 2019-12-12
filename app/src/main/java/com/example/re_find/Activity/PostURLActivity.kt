@@ -12,7 +12,7 @@ class PostURLActivity : AppCompatActivity() {
         setContentView(R.layout.activity_post_url)
 
         val intent = intent
-        val postURL = intent.getStringExtra("Post")
+        val postURL = intent.getStringExtra("PostURL")
 
         urlTxt.text = postURL
     }

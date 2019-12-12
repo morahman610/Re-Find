@@ -1,7 +1,5 @@
-package com.example.re_find.RedditResponse
+package com.example.re_find.Model
 
-
-import com.google.gson.annotations.SerializedName
 
 data class Data(
     val after: String,

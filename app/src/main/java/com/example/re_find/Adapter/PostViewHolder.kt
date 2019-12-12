@@ -5,12 +5,10 @@ import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.subreddit_item_view.view.*
 
-class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val postName = itemView.postName
     val subCatName = itemView.subCatName
+    val postImage = itemView.postImg
 
-    override fun onClick(v: View?) {
-
-    }
 }
